@@ -1,0 +1,2292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>MIND MOJITO MEDIA // Creative Content Production & Media Agency</title>
+
+  <!-- Google Fonts: Anton (Impact Headline) & Space Grotesk (Razor-Sharp Body & UI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #040714;               /* Deepest Studio Midnight */
+      --surface: #080f2b;          /* Dark Cobalt Surface */
+      --surface-card: #0b143a;     /* Card Surface */
+      --surface-hover: #101c54;    /* Active Row Hover */
+      --blue: #0038FF;             /* Official Brand Electric Cobalt */
+      --blue-glow: rgba(0, 56, 255, 0.45);
+      --yellow: #FFE600;           /* Official Spark Ray Yellow */
+      --yellow-glow: rgba(255, 230, 0, 0.35);
+      --text: #FFFFFF;
+      --text-muted: #9aa8c7;
+      --text-dim: #627297;
+      --border: #14225c;
+      --border-hairline: rgba(255, 255, 255, 0.08);
+      --border-active: rgba(255, 230, 0, 0.45);
+      --font-display: 'Anton', sans-serif;
+      --font-ui: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-ui);
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    /* ── SUBTLE ANALOG FILM GRAIN OVERLAY ── */
+    .film-grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.035;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* ── HEADER & NAVIGATION (RAZOR SHARP TYPOGRAPHY) ── */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 16px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      background: rgba(4, 7, 20, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-hairline);
+      transition: all 0.3s ease;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .brand-logo svg {
+      height: 42px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 34px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-family: var(--font-ui);
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--yellow);
+    }
+
+    .nav-cta-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* Crystal Clear Desktop Header Button (Space Grotesk 700) */
+    .header-btn {
+      background: var(--yellow);
+      color: #000000;
+      padding: 10px 22px;
+      font-family: var(--font-ui);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .header-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px var(--yellow-glow);
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      color: #fff;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .mobile-toggle span {
+      width: 20px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .mobile-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+    .mobile-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-nav-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(4, 7, 20, 0.98);
+      backdrop-filter: blur(25px);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px 8%;
+      transform: translateY(-100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .mobile-nav-overlay.open { transform: translateY(0); }
+
+    .mobile-nav-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 35px;
+    }
+
+    .mobile-nav-links a {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+    }
+
+    .mobile-nav-links a span {
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      color: var(--yellow);
+      letter-spacing: 2px;
+    }
+
+    /* ── HIGH-LEGIBILITY BUTTON SYSTEM (SPACE GROTESK BOLD) ── */
+    .btn-brand-yellow {
+      background: var(--yellow);
+      color: #000000;
+      padding: 13px 26px;
+      font-family: var(--font-ui);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 999px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-brand-yellow:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px var(--yellow-glow);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.04);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 13px 24px;
+      font-family: var(--font-ui);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 999px;
+      transition: all 0.2s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--yellow);
+      background: rgba(255, 230, 0, 0.1);
+      color: var(--yellow);
+    }
+
+    /* ── SECTION 1: EXPANSIVE GRAND HERO SHOWCASE ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      padding: 130px 5% 70px;
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2.2px;
+      color: var(--yellow);
+      background: rgba(255, 230, 0, 0.08);
+      border: 1px solid rgba(255, 230, 0, 0.25);
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+    }
+
+    .pulsing-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--yellow);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--yellow);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.4); }
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 6.8vw, 7.2rem);
+      line-height: 0.92;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-title .yellow-brush {
+      position: relative;
+      display: inline-block;
+      color: var(--yellow);
+    }
+
+    .hero-title .yellow-brush::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 6px;
+      background: var(--yellow);
+      transform: rotate(-1deg);
+      border-radius: 3px;
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin-bottom: 34px;
+      line-height: 1.6;
+    }
+
+    .hero-desc strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* EXPANDED DOMINANT HERO VIDEO STAGE */
+    .hero-video-card {
+      position: relative;
+      width: 100%;
+      height: 580px;
+      background: #000;
+      border: 1px solid rgba(0, 56, 255, 0.5);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 56, 255, 0.25);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-video-card:hover {
+      border-color: var(--yellow);
+      box-shadow: 0 35px 90px rgba(0, 56, 255, 0.35);
+    }
+
+    .hero-video-card video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.9;
+      filter: contrast(110%);
+    }
+
+    .hero-video-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(4,7,20,0.15) 0%, rgba(4,7,20,0.25) 50%, rgba(4,7,20,0.9) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 26px;
+      pointer-events: none;
+    }
+
+    .hero-video-card::before {
+      content: '+';
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: rgba(255, 255, 255, 0.4);
+      font-family: monospace;
+      font-size: 1.2rem;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .doodle-badge {
+      align-self: flex-start;
+      background: rgba(4, 7, 20, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .doodle-badge .rec-dot {
+      width: 8px;
+      height: 8px;
+      background: #ff3344;
+      border-radius: 50%;
+      animation: pulse 1.2s infinite;
+    }
+
+    .hero-video-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      pointer-events: auto;
+    }
+
+    .chalk-quote {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      letter-spacing: 0.5px;
+      line-height: 1.05;
+      color: #fff;
+    }
+
+    .chalk-quote span {
+      color: var(--yellow);
+    }
+
+    .btn-showreel-play {
+      background: var(--yellow);
+      color: #000;
+      border: none;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.4rem;
+      padding-left: 4px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-showreel-play:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 35px var(--yellow);
+    }
+
+    /* ── RUNNING MARQUEE ── */
+    .marquee {
+      background: var(--yellow);
+      color: #000;
+      padding: 14px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      letter-spacing: 1px;
+      border-top: 1px solid #000;
+      border-bottom: 1px solid #000;
+    }
+
+    .marquee-track {
+      display: inline-block;
+      animation: marquee 24s linear infinite;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── SECTION 2: STATS METRICS ── */
+    .stats-bar {
+      border-top: 1px solid var(--border-hairline);
+      border-bottom: 1px solid var(--border-hairline);
+      background: rgba(8, 15, 43, 0.4);
+      padding: 40px 5%;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 4.2vw, 4rem);
+      color: var(--yellow);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ── SECTION COMMON WRAPPER ── */
+    .section-wrap {
+      padding: 100px 5%;
+      position: relative;
+    }
+
+    .section-header {
+      margin-bottom: 45px;
+      max-width: 850px;
+    }
+
+    .section-eyebrow {
+      color: var(--yellow);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4.6rem);
+      line-height: 0.94;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── SECTION 3: THE WORK VAULT (COMES FIRST) ── */
+    .vault-tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 35px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .v-tab-btn {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 9px 22px;
+      font-family: var(--font-ui);
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      border-radius: 999px;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .v-tab-btn.active, .v-tab-btn:hover {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+      box-shadow: 0 0 20px var(--blue-glow);
+    }
+
+    .vault-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .vault-card {
+      position: relative;
+      height: 380px;
+      background: #000;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .vault-card:hover {
+      border-color: var(--yellow);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    .vault-card img, .vault-card video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .vault-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .vault-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 22px;
+      background: linear-gradient(180deg, transparent 0%, rgba(4,7,20,0.96) 100%);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      z-index: 2;
+    }
+
+    .vault-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--yellow);
+      margin-bottom: 4px;
+    }
+
+    .vault-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      line-height: 1.1;
+    }
+
+    .media-pill {
+      background: rgba(0, 56, 255, 0.85);
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      padding: 4px 10px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    /* ── SECTION 4: CAPABILITIES (BESPOKE PRODUCTION DIRECTORY ROSTER) ── */
+    .roster-container {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .roster-row {
+      display: grid;
+      grid-template-columns: 80px 1.4fr 1.6fr 50px;
+      align-items: center;
+      padding: 28px 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .roster-row::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--yellow);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .roster-row:hover {
+      background: rgba(8, 15, 43, 0.85);
+      padding-left: 32px;
+    }
+
+    .roster-row:hover::before {
+      opacity: 1;
+    }
+
+    .roster-idx {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--text-dim);
+      transition: color 0.2s;
+    }
+
+    .roster-row:hover .roster-idx {
+      color: var(--yellow);
+    }
+
+    .roster-dept {
+      padding-right: 20px;
+    }
+
+    .roster-title {
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      line-height: 1.1;
+      color: #fff;
+      transition: color 0.2s;
+      margin-bottom: 6px;
+    }
+
+    .roster-row:hover .roster-title {
+      color: var(--yellow);
+    }
+
+    .roster-scope {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      padding-right: 20px;
+    }
+
+    .roster-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .roster-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #b5c3e0;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.5px;
+    }
+
+    .roster-arrow {
+      font-family: var(--font-ui);
+      font-size: 1.4rem;
+      color: var(--text-dim);
+      text-align: right;
+      transition: transform 0.2s, color 0.2s;
+    }
+
+    .roster-row:hover .roster-arrow {
+      color: var(--yellow);
+      transform: translate(4px, -4px);
+    }
+
+    /* ── SECTION 5: BRAND ETHOS (EDITORIAL STUDIO MANIFESTO) ── */
+    .manifesto-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .manifesto-col {
+      padding: 38px 24px;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      transition: background 0.3s;
+    }
+
+    .manifesto-col:last-child {
+      border-right: none;
+    }
+
+    .manifesto-col:hover {
+      background: rgba(8, 15, 43, 0.6);
+    }
+
+    .manifesto-num {
+      font-family: var(--font-display);
+      font-size: 3.2rem;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(255, 230, 0, 0.45);
+      margin-bottom: 14px;
+      transition: all 0.2s;
+    }
+
+    .manifesto-col:hover .manifesto-num {
+      -webkit-text-stroke: 1.5px var(--yellow);
+      color: var(--yellow);
+    }
+
+    .manifesto-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .manifesto-text {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION 6: BTS & PROCESS (PERFECT 1:1 HEIGHT ALIGNMENT + 3 VIDEOS)
+       ══════════════════════════════════════════════════════════════ */
+    .bts-process-split {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 32px;
+      align-items: stretch;
+    }
+
+    /* Left Side: Cinema Multi-Cam Console (Matches Height to Exact Pixel) */
+    .bts-monitor-wall {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .bts-header-block {
+      margin-bottom: 18px;
+    }
+
+    .monitor-screen-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+
+    /* Video 1: Featured Main Widescreen Feed */
+    .cam-monitor-card-main {
+      position: relative;
+      width: 100%;
+      height: 185px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: #000;
+    }
+
+    .cam-monitor-card-main video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.88;
+    }
+
+    /* Videos 2 & 3: Side-by-Side Dual Sub-Feeds */
+    .cam-monitor-sub-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .cam-monitor-card-sub {
+      position: relative;
+      width: 100%;
+      height: 135px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: #000;
+    }
+
+    .cam-monitor-card-sub video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+    }
+
+    .cam-hud-overlay {
+      position: absolute;
+      inset: 0;
+      padding: 10px 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, transparent 40%, rgba(0,0,0,0.75) 100%);
+    }
+
+    .cam-hud-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: monospace;
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+
+    .cam-rec-pill {
+      background: rgba(255, 51, 68, 0.2);
+      border: 1px solid #ff3344;
+      color: #ff3344;
+      padding: 1px 7px;
+      border-radius: 4px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .cam-hud-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+
+    /* Right Side: Streamlined 5-Step Roadmap Console (Flush Bottom) */
+    .process-roadmap-wall {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .process-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .process-step {
+      background: rgba(4, 7, 20, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: all 0.2s;
+    }
+
+    .process-step:hover {
+      border-color: var(--yellow);
+      background: rgba(255, 230, 0, 0.04);
+      transform: translateX(4px);
+    }
+
+    .step-idx {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--yellow);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 32px;
+    }
+
+    .step-content {
+      flex: 1;
+    }
+
+    .step-name {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+
+    .step-desc {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.4;
+    }
+
+    /* ── SECTION 7: PRODUCTION FAQ ── */
+    .faq-list {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 22px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .faq-toggle-icon {
+      font-size: 1.4rem;
+      color: var(--yellow);
+      transition: transform 0.3s;
+    }
+
+    .faq-item.active .faq-toggle-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+      padding: 0 28px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding-bottom: 24px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION 8: CLIENT VOICES (AUTOMATED SWIPING CAROUSEL)
+       + SPARK YELLOW INQUIRY BANNER (HIGH CONTRAST & CRYSTAL CLEAR)
+       ══════════════════════════════════════════════════════════════ */
+    .cta-banner-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 30px;
+      align-items: stretch;
+    }
+
+    .testimonial-slider-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 45px 40px;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-slide-track {
+      position: relative;
+      min-height: 230px;
+    }
+
+    .testimonial-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .testimonial-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(0);
+      position: relative;
+    }
+
+    .testimonial-quote {
+      font-size: 1.25rem;
+      line-height: 1.55;
+      color: #e2eafc;
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+
+    .testimonial-author {
+      font-family: var(--font-ui);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--yellow);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .testimonial-role {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 4px;
+    }
+
+    .slider-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 20px;
+    }
+
+    .slider-dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .slider-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .slider-dot.active {
+      background: var(--yellow);
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    .slider-arrows {
+      display: flex;
+      gap: 10px;
+    }
+
+    .slider-arrow-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+
+    .slider-arrow-btn:hover {
+      background: var(--yellow);
+      color: #000;
+      border-color: var(--yellow);
+    }
+
+    /* ── YELLOW INQUIRY BOX (CRYSTAL CLEAR HIGH CONTRAST TYPOGRAPHY) ── */
+    .yellow-inquiry-box {
+      background: var(--yellow);
+      color: #000000;
+      padding: 45px 42px;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 20px 50px rgba(255, 230, 0, 0.15);
+    }
+
+    .yellow-inquiry-box h3 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      line-height: 0.95;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+      color: #000000;
+    }
+
+    .yellow-inquiry-box p {
+      font-family: var(--font-ui);
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      color: #1a1a1a;
+      line-height: 1.45;
+    }
+
+    .yellow-inquiry-box input {
+      padding: 15px 18px;
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+      font-family: var(--font-ui);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #000000;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .yellow-inquiry-box input::placeholder {
+      color: #666666;
+      font-weight: 500;
+    }
+
+    .yellow-inquiry-box input:focus {
+      border-color: #000000;
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+    }
+
+    /* Razor Sharp Legible Black Button (Space Grotesk 700) */
+    .yellow-inquiry-box button {
+      background: #000000;
+      color: #ffffff;
+      border: none;
+      padding: 16px 20px;
+      font-family: var(--font-ui);
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .yellow-inquiry-box button:hover {
+      background: #181818;
+      transform: translateY(-2px);
+    }
+
+    /* ── FULLSCREEN LIGHTBOX ── */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+    }
+
+    .lightbox-modal.active {
+      display: flex;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 25px;
+      right: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .lightbox-close:hover {
+      background: var(--yellow);
+      color: #000;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border-hairline);
+      padding: 60px 5% 40px;
+      background: #02040c;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 45px;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 35px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--yellow);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 26px;
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       RESPONSIVE RULES (TABLET & MOBILE OPTIMIZATIONS)
+       ══════════════════════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; padding-top: 110px; gap: 35px; }
+      .hero-video-card { height: 420px; }
+      .manifesto-grid { grid-template-columns: repeat(2, 1fr); }
+      .manifesto-col { border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+      .vault-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .roster-row { grid-template-columns: 60px 1.2fr 1.6fr 30px; padding: 24px 16px; }
+      .bts-process-split { grid-template-columns: 1fr; gap: 24px; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .header-btn { display: none; }
+      .mobile-toggle { display: flex; }
+      header { padding: 14px 5%; }
+
+      /* Mobile Hero */
+      .hero { padding: 95px 5% 40px; gap: 22px; min-height: auto; }
+      .hero-title { font-size: 2.8rem; line-height: 0.94; margin-bottom: 16px; }
+      .hero-desc { font-size: 0.98rem; margin-bottom: 20px; }
+      .hero-actions { width: 100%; display: flex; flex-direction: row; gap: 10px; }
+      .hero-actions .btn-brand-yellow, .hero-actions .btn-outline { flex: 1; padding: 12px 14px; font-size: 0.88rem; }
+      .hero-video-card { height: 230px; border-radius: 14px; }
+
+      /* Mobile Stats 2x2 */
+      .stats-bar { grid-template-columns: 1fr 1fr; padding: 24px 5%; gap: 16px 12px; }
+      .stat-num { font-size: 2.1rem; }
+      .stat-label { font-size: 0.72rem; }
+
+      .section-wrap { padding: 60px 5%; }
+      .section-header { margin-bottom: 30px; }
+      .section-title { font-size: 2.2rem; }
+
+      /* Mobile Vault */
+      .vault-grid { grid-template-columns: 1fr; gap: 16px; }
+      .vault-card { height: 260px; }
+      .vault-title { font-size: 1.2rem; }
+
+      /* Mobile Capabilities Roster */
+      .roster-row {
+        grid-template-columns: 36px 1fr;
+        gap: 10px;
+        padding: 20px 10px;
+      }
+      .roster-title { font-size: 1.35rem; }
+      .roster-scope { grid-column: span 2; padding-right: 0; font-size: 0.88rem; }
+      .roster-arrow { display: none; }
+
+      /* Mobile Brand Ethos */
+      .manifesto-grid { grid-template-columns: 1fr; }
+      .manifesto-col { border-right: none; padding: 24px 12px; }
+      .manifesto-num { font-size: 2.6rem; margin-bottom: 8px; }
+
+      /* Mobile BTS & Process */
+      .bts-process-split { grid-template-columns: 1fr; gap: 24px; }
+      .bts-monitor-wall, .process-roadmap-wall { padding: 22px 18px; }
+      .cam-monitor-card-main { height: 160px; }
+      .cam-monitor-card-sub { height: 105px; }
+      .process-step { padding: 12px 14px; }
+      .step-name { font-size: 1.1rem; }
+      .step-desc { font-size: 0.82rem; }
+
+      /* Mobile Testimonials & Contact */
+      .cta-banner-grid { grid-template-columns: 1fr; gap: 20px; }
+      .testimonial-slider-card { padding: 28px 20px; }
+      .testimonial-slide-track { min-height: 200px; }
+      .testimonial-quote { font-size: 1.05rem; }
+      .yellow-inquiry-box { padding: 30px 20px; }
+      .yellow-inquiry-box h3 { font-size: 2.2rem; }
+
+      .footer-top { flex-direction: column; gap: 25px; }
+      .footer-links { flex-direction: column; gap: 14px; }
+      .footer-bottom { flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body id="top">
+
+  <!-- Analog Film Grain Overlay -->
+  <div class="film-grain"></div>
+
+  <!-- Header -->
+  <header>
+    <a href="#top" class="brand-logo" aria-label="Mind Mojito Media Home">
+      <svg width="155" height="42" viewBox="0 0 200 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M46 16 C42 12, 34 5, 29 10 C25 14, 34 20, 42 21 Z" fill="#FFE600"/>
+        <path d="M51 18 C51 11, 48 2, 53 2 C58 2, 56 11, 56 18 Z" fill="#FFE600"/>
+        <path d="M61 21 C69 20, 78 14, 74 10 C69 5, 61 12, 57 16 Z" fill="#FFE600"/>
+        <circle cx="53.5" cy="24" r="3" fill="#FFFFFF"/>
+        <text x="0" y="44" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="28" fill="#FFFFFF" letter-spacing="-0.5">mind</text>
+        <text x="0" y="62" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="24" fill="#FFFFFF" letter-spacing="-0.5">mojito</text>
+        <text x="88" y="62" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="10" fill="#FFFFFF" letter-spacing="4">MEDIA</text>
+      </svg>
+    </a>
+
+    <!-- Desktop Nav Links -->
+    <ul class="nav-links">
+      <li><a href="#vault">Our Work</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#ethos">Ethos</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <!-- Header Right Actions -->
+    <div class="nav-cta-wrap">
+      <a href="#contact" class="header-btn">LET'S CREATE →</a>
+      <button class="mobile-toggle" id="menuToggle" aria-label="Toggle navigation menu" onclick="toggleMobileNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Fullscreen Mobile Navigation Drawer -->
+  <div class="mobile-nav-overlay" id="mobileDrawer">
+    <ul class="mobile-nav-links">
+      <li><a href="#vault" onclick="toggleMobileNav()">Our Work <span>01</span></a></li>
+      <li><a href="#services" onclick="toggleMobileNav()">Services <span>02</span></a></li>
+      <li><a href="#ethos" onclick="toggleMobileNav()">Ethos <span>03</span></a></li>
+      <li><a href="#process" onclick="toggleMobileNav()">Process <span>04</span></a></li>
+      <li><a href="#faq" onclick="toggleMobileNav()">FAQ <span>05</span></a></li>
+      <li><a href="#contact" onclick="toggleMobileNav()">Contact <span>06</span></a></li>
+    </ul>
+    <div>
+      <a href="#contact" class="btn-brand-yellow" style="width:100%;" onclick="toggleMobileNav()">START A PROJECT →</a>
+      <p style="color:var(--text-dim); font-size:0.8rem; text-align:center; letter-spacing:1px; margin-top:12px;">DELHI · MUMBAI · BANGALORE</p>
+    </div>
+  </div>
+
+  <!-- Section 1: Expansive Grand Hero Showcase -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="pulsing-dot"></span> Creative Content & Media Agency
+      </div>
+      <h1 class="hero-title">
+        CONTENT THAT<br>
+        <span class="yellow-brush">CONNECTS.</span>
+      </h1>
+      <p class="hero-desc">
+        We turn bold ideas into stories, stories into cinema-grade content, and content into visual experiences that people remember.
+        <strong>A production house for brands that want more.</strong>
+      </p>
+      <div class="hero-actions">
+        <a href="#vault" class="btn-brand-yellow">EXPLORE WORK ↘</a>
+        <a href="#contact" class="btn-outline">LET'S TALK</a>
+      </div>
+    </div>
+
+    <!-- DOMINANT WIDESCREEN HERO CINEMA STAGE -->
+    <div class="hero-video-card">
+      <video autoplay muted loop playsinline preload="auto" poster="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=900&auto=format&fit=crop&q=80">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-concert-crowd-raising-hands-under-colorful-stage-lights-42589-large.mp4" type="video/mp4">
+      </video>
+      <div class="hero-video-overlay">
+        <div class="doodle-badge">
+          <span class="rec-dot"></span> 4K DCI MASTER REEL
+        </div>
+        <div class="hero-video-footer">
+          <div class="chalk-quote">WE ADD FIZZ TO<br><span>YOUR BUSINESS.</span></div>
+          <button class="btn-showreel-play" aria-label="Play showreel with sound" onclick="openLightbox('video', 'https://assets.mixkit.co/videos/preview/mixkit-concert-crowd-raising-hands-under-colorful-stage-lights-42589-large.mp4')">▶</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Running Marquee Banner -->
+  <div class="marquee">
+    <div class="marquee-track">
+      ★ ARENA CONCERTS & FESTIVALS // 4K STUDIO PODCASTS // BRAND COMMERCIALS // EDITORIAL LOOKBOOKS // VIRAL SOCIAL REELS // WE ADD FIZZ TO YOUR BUSINESS ★ ARENA CONCERTS & FESTIVALS // 4K STUDIO PODCASTS // BRAND COMMERCIALS // EDITORIAL LOOKBOOKS // VIRAL SOCIAL REELS // WE ADD FIZZ TO YOUR BUSINESS ★
+    </div>
+  </div>
+
+  <!-- Section 2: Stats Counter Bar -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-num">120M+</div>
+      <div class="stat-label">Views & Reach Generated</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">150+</div>
+      <div class="stat-label">Concerts & Live Events</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">45+</div>
+      <div class="stat-label">Commercials & DVCs</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">200+</div>
+      <div class="stat-label">4K Podcast Episodes</div>
+    </div>
+  </div>
+
+  <!-- Section 3: The Work Vault (COMES FIRST) -->
+  <section class="section-wrap" id="vault" style="background:#020510;">
+    <div class="section-header">
+      <div class="section-eyebrow">// 01 SELECTED WORKS</div>
+      <h2 class="section-title">A MIX OF IDEAS,<br><span style="color:var(--yellow);">GENRES AND STORIES.</span></h2>
+      <p style="color:var(--text-muted); font-size:1.1rem; max-width:680px; margin-top:10px;">
+        From high-octane arena concert aftermovies to 4K studio podcasts, commercial DVCs, and editorial lookbooks.
+      </p>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="vault-tabs">
+      <button class="v-tab-btn active" onclick="filterVault('all', this)">ALL WORKS</button>
+      <button class="v-tab-btn" onclick="filterVault('video', this)">VIDEO PRODUCTIONS</button>
+      <button class="v-tab-btn" onclick="filterVault('still', this)">STILLS & LOOKBOOKS</button>
+    </div>
+
+    <div class="vault-grid">
+      <!-- Item 1 (Video) -->
+      <div class="vault-card" data-kind="video" onclick="openLightbox('video', 'https://assets.mixkit.co/videos/preview/mixkit-concert-crowd-raising-hands-under-colorful-stage-lights-42589-large.mp4')">
+        <video autoplay muted loop playsinline preload="auto" poster="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=900&auto=format&fit=crop&q=80">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-concert-crowd-raising-hands-under-colorful-stage-lights-42589-large.mp4" type="video/mp4">
+        </video>
+        <div class="vault-info">
+          <div>
+            <div class="vault-tag">LIVE EVENTS & CONCERTS</div>
+            <div class="vault-title">DIVINE Arena Tour Aftermovie</div>
+          </div>
+          <span class="media-pill">▶ REEL</span>
+        </div>
+      </div>
+
+      <!-- Item 2 (Video) -->
+      <div class="vault-card" data-kind="video" onclick="openLightbox('video', 'https://assets.mixkit.co/videos/preview/mixkit-young-man-talking-in-front-of-a-microphone-in-a-studio-41121-large.mp4')">
+        <video autoplay muted loop playsinline preload="auto" poster="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=900&auto=format&fit=crop&q=80">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-young-man-talking-in-front-of-a-microphone-in-a-studio-41121-large.mp4" type="video/mp4">
+        </video>
+        <div class="vault-info">
+          <div>
+            <div class="vault-tag">4K STUDIO PODCAST</div>
+            <div class="vault-title">The Raw & Real Show // Ep 24</div>
+          </div>
+          <span class="media-pill">▶ REEL</span>
+        </div>
+      </div>
+
+      <!-- Item 3 (Still) -->
+      <div class="vault-card" data-kind="still" onclick="openLightbox('image', 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1200&auto=format&fit=crop&q=80')">
+        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=900&auto=format&fit=crop&q=80" alt="Noir Streetwear Lookbook">
+        <div class="vault-info">
+          <div>
+            <div class="vault-tag">EDITORIAL LOOKBOOK</div>
+            <div class="vault-title">Noir Streetwear Campaign</div>
+          </div>
+          <span class="media-pill">STILL</span>
+        </div>
+      </div>
+
+      <!-- Item 4 (Video) -->
+      <div class="vault-card" data-kind="video" onclick="openLightbox('video', 'https://assets.mixkit.co/videos/preview/mixkit-athlete-running-on-an-athletics-track-at-sunset-41619-large.mp4')">
+        <video autoplay muted loop playsinline preload="auto" poster="https://images.unsplash.com/photo-1556906781-9a412961c28c?w=900&auto=format&fit=crop&q=80">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-athlete-running-on-an-athletics-track-at-sunset-41619-large.mp4" type="video/mp4">
+        </video>
+        <div class="vault-info">
+          <div>
+            <div class="vault-tag">COMMERCIAL FILM / DVC</div>
+            <div class="vault-title">PUMA Midnight Run DVC</div>
+          </div>
+          <span class="media-pill">▶ REEL</span>
+        </div>
+      </div>
+
+      <!-- Item 5 (Still) -->
+      <div class="vault-card" data-kind="still" onclick="openLightbox('image', 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1200&auto=format&fit=crop&q=80')">
+        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=900&auto=format&fit=crop&q=80" alt="Aura Chronograph Watch">
+        <div class="vault-info">
+          <div>
+            <div class="vault-tag">PRODUCT PHOTOGRAPHY</div>
+            <div class="vault-title">Aura Chronograph Stills</div>
+          </div>
+          <span class="media-pill">STILL</span>
+        </div>
+      </div>
+
+      <!-- Item 6 (Video) -->
+      <div class="vault-card" data-kind="video" onclick="openLightbox('video', 'https://assets.mixkit.co/videos/preview/mixkit-hands-of-people-at-a-music-concert-42867-large.mp4')">
+        <video autoplay muted loop playsinline preload="auto" poster="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=900&auto=format&fit=crop&q=80">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-hands-of-people-at-a-music-concert-42867-large.mp4" type="video/mp4">
+        </video>
+        <div class="vault-info">
+          <div>
+            <div class="vault-tag">LIVE FESTIVAL COVERAGE</div>
+            <div class="vault-title">Sunburn Mainstage Festival</div>
+          </div>
+          <span class="media-pill">▶ REEL</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 4: CAPABILITIES (BESPOKE PRODUCTION DIRECTORY ROSTER) ── -->
+  <section class="section-wrap" id="services">
+    <div class="section-header">
+      <div class="section-eyebrow">// 02 CAPABILITIES & DEPARTMENTS</div>
+      <h2 class="section-title">CREATIVITY MEETS<br><span style="color:var(--yellow);">PRODUCTION MASTERY.</span></h2>
+      <p style="color:var(--text-muted); font-size:1.1rem; max-width:680px; margin-top:10px;">
+        An end-to-end creative production house built for high-stakes arena tours, 4K studio broadcasts, and cinema commercial campaigns.
+      </p>
+    </div>
+
+    <div class="roster-container">
+      <div class="roster-row" onclick="location.href='#contact'">
+        <div class="roster-idx">01</div>
+        <div class="roster-dept">
+          <div class="roster-title">Corporate Films & Brand Stories</div>
+          <div class="roster-chips">
+            <span class="roster-chip">Brand Documentaries</span>
+            <span class="roster-chip">Founder Narratives</span>
+            <span class="roster-chip">Leadership Films</span>
+          </div>
+        </div>
+        <div class="roster-scope">
+          Cinema-grade brand documentaries and leadership shoots crafted with high-fashion lighting and broadcast audio that communicate purpose and drive trust.
+        </div>
+        <div class="roster-arrow">↗</div>
+      </div>
+
+      <div class="roster-row" onclick="location.href='#contact'">
+        <div class="roster-idx">02</div>
+        <div class="roster-dept">
+          <div class="roster-title">Live Events & Arena Tours</div>
+          <div class="roster-chips">
+            <span class="roster-chip">Concert Aftermovies</span>
+            <span class="roster-chip">4K Arena Multicam</span>
+            <span class="roster-chip">Real-Time Reels</span>
+          </div>
+        </div>
+        <div class="roster-scope">
+          High-voltage multi-cam arena coverage, soundboard line-in audio mastering, artist green room access, and 24-hour rush social edits for live tours.
+        </div>
+        <div class="roster-arrow">↗</div>
+      </div>
+
+      <div class="roster-row" onclick="location.href='#contact'">
+        <div class="roster-idx">03</div>
+        <div class="roster-dept">
+          <div class="roster-title">4K Studio Podcasts & Vodcasts</div>
+          <div class="roster-chips">
+            <span class="roster-chip">Acoustic Audio</span>
+            <span class="roster-chip">Multi-Angle Cinema</span>
+            <span class="roster-chip">Viral Micro-Cuts</span>
+          </div>
+        </div>
+        <div class="roster-scope">
+          Turnkey studio setups, acoustic engineering, live multi-angle camera switching, and weekly retainer delivery optimized for Spotify and YouTube.
+        </div>
+        <div class="roster-arrow">↗</div>
+      </div>
+
+      <div class="roster-row" onclick="location.href='#contact'">
+        <div class="roster-idx">04</div>
+        <div class="roster-dept">
+          <div class="roster-title">Commercial Photography & Stills</div>
+          <div class="roster-chips">
+            <span class="roster-chip">Editorial Lookbooks</span>
+            <span class="roster-chip">Apparel Stills</span>
+            <span class="roster-chip">Tour Galleries</span>
+          </div>
+        </div>
+        <div class="roster-scope">
+          High-fashion streetwear lookbooks, editorial campaigns, crisp macro product photography, and high-energy music tour press stills.
+        </div>
+        <div class="roster-arrow">↗</div>
+      </div>
+
+      <div class="roster-row" onclick="location.href='#contact'">
+        <div class="roster-idx">05</div>
+        <div class="roster-dept">
+          <div class="roster-title">Commercial Ad Films & DVCs</div>
+          <div class="roster-chips">
+            <span class="roster-chip">OTT Commercials</span>
+            <span class="roster-chip">Meta Ads</span>
+            <span class="roster-chip">Motion Design</span>
+          </div>
+        </div>
+        <div class="roster-scope">
+          High-conversion ad films crafted for OTT platforms, YouTube, Meta, and theatre screens that demand customer attention from frame one.
+        </div>
+        <div class="roster-arrow">↗</div>
+      </div>
+
+      <div class="roster-row" onclick="location.href='#contact'">
+        <div class="roster-idx">06</div>
+        <div class="roster-dept">
+          <div class="roster-title">Social-First Content & 9:16 Reels</div>
+          <div class="roster-chips">
+            <span class="roster-chip">High-Retention Hooks</span>
+            <span class="roster-chip">Kinetic Type</span>
+            <span class="roster-chip">Trendjacking</span>
+          </div>
+        </div>
+        <div class="roster-scope">
+          High-retention 9:16 vertical reels, kinetic typography, trendjacking concepts, and platform-specific formats designed to stop the infinite scroll.
+        </div>
+        <div class="roster-arrow">↗</div>
+      </div>
+
+      <div class="roster-row" onclick="location.href='#contact'">
+        <div class="roster-idx">07</div>
+        <div class="roster-dept">
+          <div class="roster-title">Post-Production & DaVinci Grading</div>
+          <div class="roster-chips">
+            <span class="roster-chip">DaVinci Color</span>
+            <span class="roster-chip">5.1 Sound Design</span>
+            <span class="roster-chip">VFX & 3D</span>
+          </div>
+        </div>
+        <div class="roster-scope">
+          Cinema color grading, 2D/3D motion graphics, 5.1 surround sound design, Foley engineering, and broadcast-ready master deliveries.
+        </div>
+        <div class="roster-arrow">↗</div>
+      </div>
+
+      <div class="roster-row" onclick="location.href='#contact'">
+        <div class="roster-idx">08</div>
+        <div class="roster-dept">
+          <div class="roster-title">360° Creative Direction & Retainers</div>
+          <div class="roster-chips">
+            <span class="roster-chip">Creative Strategy</span>
+            <span class="roster-chip">Monthly Retainers</span>
+            <span class="roster-chip">Campaign Direction</span>
+          </div>
+        </div>
+        <div class="roster-scope">
+          End-to-end creative direction, recurring social retainer pipelines, influencer tie-ins, and performance campaign oversight for modern brands.
+        </div>
+        <div class="roster-arrow">↗</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 5: BRAND ETHOS (EDITORIAL STUDIO MANIFESTO) ── -->
+  <section class="section-wrap" id="ethos" style="background:#020510;">
+    <div class="section-header">
+      <div class="section-eyebrow">// 03 BRAND ETHOS</div>
+      <h2 class="section-title">THE MIND MOJITO<br><span style="color:var(--yellow);">WAY OF WORKING.</span></h2>
+      <p style="color:var(--text-muted); font-size:1.1rem; max-width:680px; margin-top:10px;">
+        Core principles that guide every frame, every script, and every master delivery.
+      </p>
+    </div>
+
+    <div class="manifesto-grid">
+      <div class="manifesto-col">
+        <div class="manifesto-num">01</div>
+        <div class="manifesto-title">Ideas First</div>
+        <p class="manifesto-text">Every single piece of content starts with a sharp, bold concept that actually cuts through the algorithmic noise.</p>
+      </div>
+
+      <div class="manifesto-col">
+        <div class="manifesto-num">02</div>
+        <div class="manifesto-title">Creativity with Purpose</div>
+        <p class="manifesto-text">We make content that looks visually spectacular on a 4K monitor and directly drives real business numbers.</p>
+      </div>
+
+      <div class="manifesto-col">
+        <div class="manifesto-num">03</div>
+        <div class="manifesto-title">True Collaboration</div>
+        <p class="manifesto-text">We work alongside your marketing and creative leads as an extension of your crew, not an aloof vendor.</p>
+      </div>
+
+      <div class="manifesto-col">
+        <div class="manifesto-num">04</div>
+        <div class="manifesto-title">Execution Matters</div>
+        <p class="manifesto-text">Cinema glass, precision lighting setups, and zero compromises in every millisecond of audio mastering.</p>
+      </div>
+
+      <div class="manifesto-col">
+        <div class="manifesto-num">05</div>
+        <div class="manifesto-title">Always Experimenting</div>
+        <p class="manifesto-text">Constantly exploring new camera rigs, anamorphic lenses, kinetic typography, and viral editing pacing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       SECTION 6: BTS & PROCESS (PERFECT 1:1 HEIGHT ALIGNMENT + 3 VIDEOS)
+       ══════════════════════════════════════════════════════════════ -->
+  <section class="section-wrap" id="process">
+    <div class="bts-process-split">
+      <!-- Left: Cinema Multi-Cam Video Console (3 VIDEOS) -->
+      <div class="bts-monitor-wall">
+        <div class="bts-header-block">
+          <div class="section-eyebrow">// PRODUCTION IN ACTION</div>
+          <h3 style="font-family:var(--font-display); font-size:2.2rem; text-transform:uppercase; margin-bottom:8px; color:#fff;">ON SET.<br><span style="color:var(--yellow);">IN THE ZONE.</span></h3>
+          <p style="color:var(--text-muted); font-size:0.92rem; line-height:1.45;">
+            From packed arena concerts to 4K studio vodcasts and commercial sets, our crew captures every angle of live emotion.
+          </p>
+        </div>
+
+        <div class="monitor-screen-stack">
+          <!-- Video 1: Featured Main Feed (Concert Steadicam) -->
+          <div class="cam-monitor-card-main">
+            <video autoplay muted loop playsinline preload="auto">
+              <source src="https://assets.mixkit.co/videos/preview/mixkit-concert-crowd-raising-hands-under-colorful-stage-lights-42589-large.mp4" type="video/mp4">
+            </video>
+            <div class="cam-hud-overlay">
+              <div class="cam-hud-top">
+                <span class="cam-rec-pill">● REC [00:14:28:12]</span>
+                <span>4K DCI // 60FPS</span>
+              </div>
+              <div class="cam-hud-bottom">
+                <span>CAM 01 // ARENA STAGE MASTER</span>
+                <span style="font-family:monospace; font-size:0.75rem; color:var(--yellow);">ISO 800</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Videos 2 & 3: Side-by-Side Sub-Feeds (Studio Podcast + Director Color Suite) -->
+          <div class="cam-monitor-sub-grid">
+            <!-- Video 2: Studio Vodcast -->
+            <div class="cam-monitor-card-sub">
+              <video autoplay muted loop playsinline preload="auto">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-young-man-talking-in-front-of-a-microphone-in-a-studio-41121-large.mp4" type="video/mp4">
+              </video>
+              <div class="cam-hud-overlay">
+                <div class="cam-hud-top">
+                  <span class="cam-rec-pill">● REC</span>
+                  <span>32-BIT FLOAT</span>
+                </div>
+                <div class="cam-hud-bottom">
+                  <span style="font-size:0.85rem;">CAM 02 // PODCAST</span>
+                  <span style="font-family:monospace; font-size:0.7rem; color:var(--yellow);">CH 1/2</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Video 3: Commercial & Color Suite Set -->
+            <div class="cam-monitor-card-sub">
+              <video autoplay muted loop playsinline preload="auto">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-athlete-running-on-an-athletics-track-at-sunset-41619-large.mp4" type="video/mp4">
+              </video>
+              <div class="cam-hud-overlay">
+                <div class="cam-hud-top">
+                  <span class="cam-rec-pill">● REC</span>
+                  <span>120FPS SLOW</span>
+                </div>
+                <div class="cam-hud-bottom">
+                  <span style="font-size:0.85rem;">CAM 03 // COLOR SUITE</span>
+                  <span style="font-family:monospace; font-size:0.7rem; color:var(--yellow);">LOG-C</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: From Mind to Motion Roadmap (Perfect Flush Alignment) -->
+      <div class="process-roadmap-wall">
+        <div class="bts-header-block">
+          <div class="section-eyebrow">// OUR ROADMAP</div>
+          <h3 style="font-family:var(--font-display); font-size:2.2rem; text-transform:uppercase; margin-bottom:8px; color:#fff;">FROM MIND<br><span style="color:var(--yellow);">TO MOTION.</span></h3>
+          <p style="color:var(--text-muted); font-size:0.92rem; line-height:1.45;">
+            Our structured 5-step production methodology guaranteeing zero friction from concept to final cut.
+          </p>
+        </div>
+
+        <div class="process-timeline">
+          <!-- 01 -->
+          <div class="process-step">
+            <div class="step-idx">01</div>
+            <div class="step-content">
+              <div class="step-name">The Brief</div>
+              <div class="step-desc">Understand your brand goals, target audience, and project deliverables.</div>
+            </div>
+          </div>
+
+          <!-- 02 -->
+          <div class="process-step">
+            <div class="step-idx">02</div>
+            <div class="step-content">
+              <div class="step-name">The Brainstorm</div>
+              <div class="step-desc">Shape the narrative, write shooting scripts, and design visual moodboards.</div>
+            </div>
+          </div>
+
+          <!-- 03 -->
+          <div class="process-step">
+            <div class="step-idx">03</div>
+            <div class="step-content">
+              <div class="step-name">The Prep</div>
+              <div class="step-desc">Plan location scouting, cinema gear, set lighting, and call sheets.</div>
+            </div>
+          </div>
+
+          <!-- 04 -->
+          <div class="process-step">
+            <div class="step-idx">04</div>
+            <div class="step-content">
+              <div class="step-name">The Production</div>
+              <div class="step-desc">Multi-cam 4K cinema shoot, live soundboard audio mastering, and directing.</div>
+            </div>
+          </div>
+
+          <!-- 05 -->
+          <div class="process-step">
+            <div class="step-idx">05</div>
+            <div class="step-content">
+              <div class="step-name">The Final Cut</div>
+              <div class="step-desc">Fast editing, color grading, sound design, revisions, and master export.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: FAQ Accordion -->
+  <section class="section-wrap" id="faq" style="background:#020510;">
+    <div class="section-header" style="text-align:center; margin:0 auto 45px;">
+      <div class="section-eyebrow">// PRODUCTION FAQ</div>
+      <h2 class="section-title">FREQUENTLY ASKED<br><span style="color:var(--yellow);">QUESTIONS.</span></h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          What is your typical project turnaround time?
+          <span class="faq-toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          For fast-paced live events and concerts, our rush edit turnaround is 24 to 48 hours for viral social reels. For multi-camera podcasts and commercial brand films, delivery is typically 5 to 10 business days including revisions and sound design.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Do you travel for shoots outside Delhi NCR?
+          <span class="faq-toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Yes! We regularly produce and film across India — including Mumbai, Bangalore, Goa, Pune, and destination festivals. Our crew operates with travel-ready flight cases and modular cinema rigs.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          What cinema gear and camera packages do you use?
+          <span class="faq-toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          We shoot on Sony FX series and RED cinema cameras, equipped with prime cinema lenses, wireless video feeds, DJI Ronin stabilization, Aputure lighting fixtures, and multi-channel Sennheiser sound gear.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          How does billing and booking work?
+          <span class="faq-toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          We work with a 50% deposit upon contract signing to lock shooting dates and production crew, with the remaining 50% due upon delivery of final master files. Monthly retainer models are available for ongoing podcasts and brand social channels.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 8: CLIENT VOICES (AUTOMATED SWIPING CAROUSEL) + YELLOW INQUIRY ── -->
+  <section class="section-wrap" id="contact" style="padding-top:20px;">
+    <div class="cta-banner-grid">
+      <!-- Left: Automated Swiping Testimonial Slider -->
+      <div class="testimonial-slider-card" id="testimonialBox">
+        <div>
+          <div class="section-eyebrow">// CLIENT VOICES</div>
+          <h3 style="font-family:var(--font-display); font-size:2.2rem; text-transform:uppercase; margin-bottom:20px; color:#fff;">REAL PEOPLE.<br><span style="color:var(--yellow);">REAL STORIES.</span></h3>
+
+          <div class="testimonial-slide-track">
+            <!-- Review 1: Concert & Live Festival -->
+            <div class="testimonial-slide active">
+              <p class="testimonial-quote">
+                "Mind Mojito Media turned our 15,000-fan arena concert into a viral aftermovie that generated 2.4M views in 48 hours. The rush edit turnaround and stage coverage were unmatched."
+              </p>
+              <div class="testimonial-author">— Karan Malhotra</div>
+              <div class="testimonial-role">Partner & Head of Live Events // Arena Festival IP</div>
+            </div>
+
+            <!-- Review 2: D2C Fashion & Lookbook -->
+            <div class="testimonial-slide">
+              <p class="testimonial-quote">
+                "From our Mumbai runway to the editorial lookbook, their cinema lighting and DaVinci color grading gave our drop an international luxury aesthetic. True creative visionaries."
+              </p>
+              <div class="testimonial-author">— Siddharth Roy</div>
+              <div class="testimonial-role">Creative Director // Noir Apparel & Fashion</div>
+            </div>
+
+            <!-- Review 3: 4K Studio Podcast -->
+            <div class="testimonial-slide">
+              <p class="testimonial-quote">
+                "Our studio vodcast sounds like a broadcast television production. The weekly turnaround for 4K YouTube episodes and viral micro-cutdowns has scaled our audience 400%."
+              </p>
+              <div class="testimonial-author">— Aarav Singhania</div>
+              <div class="testimonial-role">Host & Producer // The Tech & Culture Vodcast</div>
+            </div>
+
+            <!-- Review 4: Commercial DVC Campaign -->
+            <div class="testimonial-slide">
+              <p class="testimonial-quote">
+                "The commercial ad film they wrote and directed for our festive product launch crushed every engagement KPI across Meta and YouTube. They don't just shoot; they understand business."
+              </p>
+              <div class="testimonial-author">— Pooja Nambiar</div>
+              <div class="testimonial-role">Brand Marketing Lead // DVC & Consumer Products</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slider Controls: Progress Dots + Prev/Next Buttons -->
+        <div class="slider-controls">
+          <div class="slider-dots">
+            <span class="slider-dot active" onclick="goToSlide(0)"></span>
+            <span class="slider-dot" onclick="goToSlide(1)"></span>
+            <span class="slider-dot" onclick="goToSlide(2)"></span>
+            <span class="slider-dot" onclick="goToSlide(3)"></span>
+          </div>
+          <div class="slider-arrows">
+            <button class="slider-arrow-btn" onclick="prevSlide()" aria-label="Previous Review">←</button>
+            <button class="slider-arrow-btn" onclick="nextSlide()" aria-label="Next Review">→</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Yellow Inquiry Box (Crystal Clear Typography) -->
+      <div class="yellow-inquiry-box">
+        <div>
+          <h3>Got a project brewing?</h3>
+          <p>Let's turn that idea into something real. Whether you have a full brief or just an idea waiting to take shape.</p>
+        </div>
+
+        <form action="https://api.web3forms.com/submit" method="POST" style="display:flex; flex-direction:column; gap:14px;">
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY_HERE">
+          <input type="text" name="name" placeholder="Your Name or Brand" required>
+          <input type="email" name="email" placeholder="Your Email Address" required>
+          <input type="tel" name="phone" placeholder="Phone or WhatsApp Number" required>
+          <button type="submit">START A PROJECT →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox-modal" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close lightbox">✕</button>
+    <div id="lightbox-content"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <a href="#top" class="brand-logo" style="margin-bottom:12px; display:inline-flex;">
+          <svg width="150" height="40" viewBox="0 0 200 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M46 16 C42 12, 34 5, 29 10 C25 14, 34 20, 42 21 Z" fill="#FFE600"/>
+            <path d="M51 18 C51 11, 48 2, 53 2 C58 2, 56 11, 56 18 Z" fill="#FFE600"/>
+            <path d="M61 21 C69 20, 78 14, 74 10 C69 5, 61 12, 57 16 Z" fill="#FFE600"/>
+            <circle cx="53.5" cy="24" r="3" fill="#FFFFFF"/>
+            <text x="0" y="44" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="28" fill="#FFFFFF" letter-spacing="-0.5">mind</text>
+            <text x="0" y="62" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="24" fill="#FFFFFF" letter-spacing="-0.5">mojito</text>
+            <text x="88" y="62" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="10" fill="#FFFFFF" letter-spacing="4">MEDIA</text>
+          </svg>
+        </a>
+        <p style="color:var(--text-muted); font-size:0.9rem;">Think. Create. Produce. Repeat.</p>
+      </div>
+
+      <ul class="footer-links">
+        <li><a href="#vault">Work</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#ethos">Ethos</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 MIND MOJITO MEDIA · ALL RIGHTS RESERVED.</div>
+      <div>DELHI · MUMBAI · BANGALORE</div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Quick Connect Button -->
+  <a href="https://wa.me/91XXXXXXXXXX?text=Hey%20Mind%20Mojito%20team!%20I'd%20like%20to%20discuss%20a%20video%20production%20project."
+     target="_blank"
+     rel="noopener noreferrer"
+     class="floating-whatsapp"
+     aria-label="Chat on WhatsApp">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67Z"/>
+    </svg>
+    <span>CHAT ON WHATSAPP</span>
+  </a>
+
+  <style>
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      background: #25D366;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 999px;
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .floating-whatsapp:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
+    }
+    @media (max-width: 768px) {
+      .floating-whatsapp {
+        bottom: 16px;
+        right: 16px;
+        padding: 10px 16px;
+        font-size: 0.78rem;
+      }
+    }
+  </style>
+
+  <!-- Interactive Scripts -->
+  <script>
+    // Mobile Drawer Toggle
+    function toggleMobileNav() {
+      const drawer = document.getElementById('mobileDrawer');
+      const toggle = document.getElementById('menuToggle');
+      drawer.classList.toggle('open');
+      toggle.classList.toggle('active');
+      document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
+    }
+
+    // Vault Filter Logic
+    function filterVault(type, btn) {
+      document.querySelectorAll('.v-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.querySelectorAll('.vault-card').forEach(card => {
+        if (type === 'all' || card.dataset.kind === type) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Lightbox Modal Logic
+    function openLightbox(type, src) {
+      const container = document.getElementById('lightbox-content');
+      if (type === 'video') {
+        container.innerHTML = `<video controls autoplay playsinline style="max-width:90vw; max-height:80vh; border-radius:12px; box-shadow:0 20px 50px rgba(0,0,0,0.8);"><source src="${src}" type="video/mp4"></video>`;
+      } else {
+        container.innerHTML = `<img src="${src}" style="max-width:90vw; max-height:80vh; border-radius:12px; object-fit:contain; box-shadow:0 20px 50px rgba(0,0,0,0.8);">`;
+      }
+      document.getElementById('lightbox').classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox-content').innerHTML = '';
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    document.getElementById('lightbox').addEventListener('click', (e) => {
+      if (e.target.id === 'lightbox') closeLightbox();
+    });
+
+    // FAQ Accordion Logic
+    function toggleFaq(el) {
+      const parent = el.parentElement;
+      const isOpen = parent.classList.contains('active');
+
+      document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
+
+      if (!isOpen) {
+        parent.classList.add('active');
+      }
+    }
+
+    // ── AUTOMATED TESTIMONIAL SWIPING SLIDER ──
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dots = document.querySelectorAll('.slider-dot');
+    let slideTimer;
+
+    function showSlide(index) {
+      slides.forEach((s, i) => {
+        s.classList.remove('active');
+        if (dots[i]) dots[i].classList.remove('active');
+      });
+      currentSlide = (index + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+      if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+    }
+
+    function nextSlide() {
+      showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentSlide - 1);
+    }
+
+    function goToSlide(index) {
+      showSlide(index);
+      resetSlideTimer();
+    }
+
+    function startSlideTimer() {
+      slideTimer = setInterval(nextSlide, 4500);
+    }
+
+    function resetSlideTimer() {
+      clearInterval(slideTimer);
+      startSlideTimer();
+    }
+
+    startSlideTimer();
+
+    const sliderCard = document.getElementById('testimonialBox');
+    if (sliderCard) {
+      sliderCard.addEventListener('mouseenter', () => clearInterval(slideTimer));
+      sliderCard.addEventListener('mouseleave', () => startSlideTimer());
+    }
+  </script>
+</body>
+</html>
