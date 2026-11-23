@@ -1,0 +1,13 @@
+# System and IDE
+.DS_Store
+.idea/
+
+# Secrets (If you ever add them in the future)
+.env
+.env*
+
+# Large Video Renders (Keeps raw footage off GitHub)
+*.mp4
+*.mov
+*.prproj
+*.drp
